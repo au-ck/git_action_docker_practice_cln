@@ -1,5 +1,5 @@
 const config = {
-    url: "http://localhost:2099/electronics"
+    url: "http://localhost:2030/practice"
 };
 
 export default config;
