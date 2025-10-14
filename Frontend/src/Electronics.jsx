@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-import config from "./config.js";
+// import config from "./config.js";
 
 const Electronics = () => {
   const [electronics, setElectronics] = useState([]);
@@ -17,7 +17,7 @@ const Electronics = () => {
   const [editMode, setEditMode] = useState(false);
   const [editId, setEditId] = useState(null);
 
-  const baseUrl = config.url;
+  const baseUrl =  `${import.meta.env.VITE_API_URL}/electronics`;
 
   useEffect(() => {
     fetchAllItems();

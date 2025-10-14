@@ -1,0 +1,37 @@
+services:
+  mysqldb:
+    container_name: mysql-db
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: docker
+      MYSQL_DATABASE: electronicsdb
+    
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql   # volume added here
+
+  backend:
+    container_name: springboot
+    build:
+      context: ./Backend
+      dockerfile: ../FullStack/backend.Dockerfile
+    ports:
+      - "1977:2099"
+    depends_on:
+      - mysqldb
+    restart: on-failure
+
+  frontend:
+    container_name: react
+    build:
+      context: ./Frontend
+      dockerfile: ../FullStack/frontend.Dockerfile
+    ports:
+      - "3001:80"
+    depends_on:
+      - backend
+
+# Declare volumes at the bottom
+volumes:
+  mysql-data:
