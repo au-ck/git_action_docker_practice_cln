@@ -12,10 +12,11 @@ services:
       - mysql-data:/var/lib/mysql   # volume added here
 
   backend:
+    image: mnck/git_actions_docker_practice-backend:latest
     container_name: springboot
     build:
       context: ./Backend
-      dockerfile: ./Backend/backend.Dockerfile
+      dockerfile: backend.Dockerfile
     ports:
       - "1977:2099"
     depends_on:
@@ -23,10 +24,11 @@ services:
     restart: on-failure
 
   frontend:
+    image: mnck/git_actions_docker_practice-frontend:latest
     container_name: react
     build:
       context: ./Frontend
-      dockerfile: ./Frontend/frontend.Dockerfile
+      dockerfile: frontend.Dockerfile
     ports:
       - "3000:80"
     depends_on:
